@@ -1,0 +1,25 @@
+int compare_function(const void *a,const void *b) {
+    return (strcmp((char *)a,(char *)b));
+}
+char findTheDifference(char * s, char * t){
+    qsort(s,strlen(s),sizeof(char),compare_function);
+    qsort(t,strlen(t),sizeof(char),compare_function);
+   int i = 0;
+    while(s[i] != '\0')
+    {
+        if(s[i] != t[i++])
+            return t[--i];
+    }
+    return t[i];
+}
+
+
+----------------------------------------------------------------------
+
+
+char findTheDifference(char * s, char * t){
+    int res = 0;
+    while (*s) res ^= *s++;
+    while (*t) res ^= *t++;
+    return res;
+}
